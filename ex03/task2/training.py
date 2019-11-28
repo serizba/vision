@@ -29,7 +29,7 @@ _, scores = net.inference(image_tf)  # sets up the network architecture and retu
 
 ##
 # TODO: DEFINE TRAINING LOSS AND OPTIMIZER HERE
-loss = tf.nn.softmax_cross_entropy_with_logits(class_prob_gt_tf, scores)
+loss = tf.math.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=class_prob_gt_tf, logits=scores))
 opt_gd = tf.train.GradientDescentOptimizer(learning_rate=1e-4)
 
 train_step = opt_gd.minimize(loss)

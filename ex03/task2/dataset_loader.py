@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow.contrib.data import Dataset, Iterator
+from tensorflow.data import Dataset, Iterator
 from random import shuffle
 
 DB_PATH = './bird_dataset/'
@@ -77,9 +77,9 @@ class DatasetLoader(object):
 
         # load images and turn into one hot encoding
         if self._is_train:
-            dataset = dataset.map(self._input_parser_train, num_threads=4)
+            dataset = dataset.map(self._input_parser_train, num_parallel_calls=4)
         else:
-            dataset = dataset.map(self._input_parser_test, num_threads=4)
+            dataset = dataset.map(self._input_parser_test, num_parallel_calls=4)
 
         # shuffle
         dataset = dataset.shuffle(buffer_size=32)
