@@ -96,7 +96,7 @@ class AlexNet(object):
         """
 
         # Load the weights into memory
-        weights_dict = np.load(self.WEIGHTS_PATH, encoding='bytes').item()
+        weights_dict = np.load(self.WEIGHTS_PATH, encoding='bytes', allow_pickle=True).item()
 
         weight_dict_new = dict()
         # Check if the layer is one of the layers that should be reinitialized
